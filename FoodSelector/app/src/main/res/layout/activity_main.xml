@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:textAlignment="center"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/topimage_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/foodselectorimage"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/apptitle_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Fast Food Selector"
+        android:textColor="#8BC34A"
+        android:textSize="32sp" />
+
+    <EditText
+        android:id="@+id/addfood_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Add Food Here"/>
+
+    <Button
+        android:id="@+id/addfood_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Food Here" />
+
+    <Button
+        android:id="@+id/chosen_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="26dp"
+        android:backgroundTint="#070606"
+        android:text="Pick Random Food"
+        android:textColor="#E1050D"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/chosenfood_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#8BC34A"
+        android:textSize="32sp" />
+
+</LinearLayout>
