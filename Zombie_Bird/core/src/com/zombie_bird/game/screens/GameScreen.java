@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.zombie_bird.game.gameworld.GameRenderer;
 import com.zombie_bird.game.gameworld.GameWorld;
+import com.zombie_bird.game.zbhelpers.InputHandler;
 
 /**
  * Created by Clarence E Moore on 2022-03-22.
@@ -17,13 +18,22 @@ public class GameScreen implements Screen {
     private GameWorld gameWorld;
     private GameRenderer gameRenderer;
 
-    public GameScreen() {
 
+    //This is the constructor, not this class declaration
+    public GameScreen() {
         Gdx.app.log("GameScreen", "Attached");
 
-        gameWorld = new GameWorld();
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeigth = Gdx.graphics.getHeight();
+        float gameWidth = 136;
+        float gameHeight = screenHeigth / (screenWidth / gameWidth);
+
+        int midPointY = (int) (gameHeight / 2);
+
+        gameWorld = new GameWorld(midPointY);
         gameRenderer = new GameRenderer(gameWorld);
 
+        Gdx.input.setInputProcessor(new InputHandler(gameWorld.getBird()));
     }
 
     @Override
