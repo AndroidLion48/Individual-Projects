@@ -18,7 +18,7 @@ public class Bird {
     private int width; // Determines the width of the bird
     private int height; // Determines the height of the bird
 
-    public Bird(float x, float y,int width, int height,) {
+    public Bird(float x, float y, int width, int height) {
 
         this.width = width;
         this.height = height;
