@@ -45,11 +45,13 @@ public class GameRenderer {
         shapeRenderer.begin(Filled);
 
         // Chooses RGB Color of 87, 109, 120 at full opacity.
-        shapeRenderer.setColor(87 / 225.0f, 109 / 225.0f, 120 /225.0f, 1);
+        shapeRenderer.setColor(gameWorld.getRectangle().getColor());
 
         // Draws the rectangle from myWorld (Using ShapeType.Filled)
-        shapeRenderer.rect(gameWorld.getRectangle().x, gameWorld.getRectangle().y,
-                           gameWorld.getRectangle().width, gameWorld.getRectangle().height);
+        shapeRenderer.rect(gameWorld.getRectangle().getX(),
+                           gameWorld.getRectangle().getY(),
+                           gameWorld.getRectangle().getWidth(),
+                           gameWorld.getRectangle().getHeight());
 
         // Tells the shapeRenderer to finish rendering
         // We MUST do this every time.
@@ -64,7 +66,10 @@ public class GameRenderer {
         shapeRenderer.setColor(255 / 255.0f, 109 / 255.0f, 120 / 255.0f, 1);
 
         // Draws the rectangle from myWorld (Using ShapeType.Line)
-        shapeRenderer.rect(gameWorld.getRectangle().x,gameWorld.getRectangle().y, gameWorld.getRectangle().width, gameWorld.getRectangle().height);
+        shapeRenderer.rect(gameWorld.getRectangle().getX(),
+                           gameWorld.getRectangle().getY(),
+                           gameWorld.getRectangle().getWidth(),
+                           gameWorld.getRectangle().getHeight());
 
         shapeRenderer.end();
 
