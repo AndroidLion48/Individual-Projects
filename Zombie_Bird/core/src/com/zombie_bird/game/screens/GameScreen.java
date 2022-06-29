@@ -17,6 +17,7 @@ public class GameScreen implements Screen {
 
     private GameWorld gameWorld;
     private GameRenderer gameRenderer;
+    private float runTime;
 
 
     //This is the constructor, not this class declaration
@@ -31,14 +32,10 @@ public class GameScreen implements Screen {
         int midPointY = (int) (gameHeight / 2);
 
         gameWorld = new GameWorld(midPointY);
-        gameRenderer = new GameRenderer(gameWorld);
+        gameRenderer = new GameRenderer(gameWorld, (int) gameHeight, midPointY);
 
         Gdx.input.setInputProcessor(new InputHandler(gameWorld.getBird()));
-    }
 
-    @Override
-    public void show() {
-        Gdx.app.log("GameScreen", "show called");
     }
 
     @Override
@@ -50,11 +47,14 @@ public class GameScreen implements Screen {
         // Covert Frame rate to String, print it
         //Gdx.app.log("GameScreen FPS", (1/delta) + "");
         //Passing in delta to our update method so we can perform fram-rate independent movement
+        runTime += delta;
         gameWorld.update(delta);
-        gameRenderer.render();
-
+        gameRenderer.setShapeRenderer(runTime);
 
     }
+
+    @Override
+    public void show() { Gdx.app.log("GameScreen", "show called");}
 
     @Override
     public void resize(int width, int height) {
