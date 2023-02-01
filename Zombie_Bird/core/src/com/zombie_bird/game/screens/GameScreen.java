@@ -17,6 +17,7 @@ public class GameScreen implements Screen {
 
     private GameWorld gameWorld;
     private GameRenderer gameRenderer;
+    private float runTime;
 
 
     //This is the constructor, not this class declaration
@@ -24,37 +25,40 @@ public class GameScreen implements Screen {
         Gdx.app.log("GameScreen", "Attached");
 
         float screenWidth = Gdx.graphics.getWidth();
-        float screenHeigth = Gdx.graphics.getHeight();
+        float screenHeight = Gdx.graphics.getHeight();
         float gameWidth = 136;
-        float gameHeight = screenHeigth / (screenWidth / gameWidth);
+        float gameHeight = screenHeight / (screenWidth / gameWidth);
 
         int midPointY = (int) (gameHeight / 2);
 
         gameWorld = new GameWorld(midPointY);
-        gameRenderer = new GameRenderer(gameWorld);
+        gameRenderer = new GameRenderer(gameWorld, (int) gameHeight, (int) midPointY);
 
-        Gdx.input.setInputProcessor(new InputHandler(gameWorld.getBird()));
-    }
+        gameWorld.setRender(gameRenderer);
 
-    @Override
-    public void show() {
-        Gdx.app.log("GameScreen", "show called");
+        InputHandler inputHandler = new InputHandler(gameWorld.getBird());
+
+        Gdx.input.setInputProcessor(inputHandler);
+
     }
 
     @Override
     public void render(float delta) {
-        // Sets a Color to Fill the Screen With (RGB = 10, 15, 230), Opacity of 1 (100%)
-        Gdx.gl.glClearColor(10/255.0f, 15/255.0f, 230/255.0f, 1f);
-        // Fills the screen with the selected color
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        // Covert Frame rate to String, print it
-        //Gdx.app.log("GameScreen FPS", (1/delta) + "");
-        //Passing in delta to our update method so we can perform fram-rate independent movement
+//        // Sets a Color to Fill the Screen With (RGB = 10, 15, 230), Opacity of 1 (100%)
+//        Gdx.gl.glClearColor(10/255.0f, 15/255.0f, 230/255.0f, 1f);
+//        // Fills the screen with the selected color
+//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//        // Covert Frame rate to String, print it
+//        //Gdx.app.log("GameScreen FPS", (1/delta) + "");
+//        //Passing in delta to our update method so we can perform frame-rate independent movement
+        runTime += delta;
         gameWorld.update(delta);
-        gameRenderer.render();
-
+        gameRenderer.render(runTime, delta);
 
     }
+
+    @Override
+    public void show() { Gdx.app.log("GameScreen", "show called");}
 
     @Override
     public void resize(int width, int height) {

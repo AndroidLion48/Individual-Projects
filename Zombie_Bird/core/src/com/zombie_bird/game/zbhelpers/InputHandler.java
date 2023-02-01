@@ -11,7 +11,7 @@ import com.zombie_bird.game.gameobjects.Bird;
 
 public class InputHandler implements InputProcessor{
 
-    private Bird myBird;
+    private final Bird myBird;
 
     //Ask for a reference to the Bird when InputHandler is created.
     public InputHandler(Bird bird) {
@@ -21,8 +21,8 @@ public class InputHandler implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
-        return false;
+        myBird.onClick();
+        return true; //Return true to indicate screen touch
     }
 
     @Override
