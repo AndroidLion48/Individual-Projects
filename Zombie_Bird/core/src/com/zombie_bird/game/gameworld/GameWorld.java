@@ -11,6 +11,7 @@ import com.zombie_bird.game.gameobjects.Bird;
 public class GameWorld {
 
     private final Bird bird;
+    private GameRenderer gameRenderer;
 
     public GameWorld(int midPointY) {
         // Initializing bird here
@@ -23,5 +24,10 @@ public class GameWorld {
 
     public Bird getBird() {
         return bird;
+    }
+
+    public void setRender(GameRenderer gameRenderer) {
+        this.gameRenderer = gameRenderer;
+
     }
 }

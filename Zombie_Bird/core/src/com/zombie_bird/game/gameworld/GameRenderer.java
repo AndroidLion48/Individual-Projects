@@ -7,15 +7,11 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.zombie_bird.game.gameobjects.Bird;
 import com.zombie_bird.game.zbhelpers.AssetLoader;
 
-import static com.zombie_bird.game.zbhelpers.AssetLoader.bar;
-import static com.zombie_bird.game.zbhelpers.AssetLoader.bird;
-import static com.zombie_bird.game.zbhelpers.AssetLoader.birdAnimation;
-import static com.zombie_bird.game.zbhelpers.AssetLoader.birdDown;
-import static com.zombie_bird.game.zbhelpers.AssetLoader.birdUp;
-import static com.zombie_bird.game.zbhelpers.AssetLoader.skullUp;
+import static com.zombie_bird.game.zbhelpers.AssetLoader.*;
 
 /**
  * Created by Clarence E Moore on 2022-03-22.
@@ -46,28 +42,29 @@ public class GameRenderer {
     public GameRenderer(GameWorld world, int gameHeight, int midPointY) {
         gameWorld = world;
 
-        this.gameHeight = this.gameHeight;
-        this.midPointY = this.midPointY;
+        this.gameHeight = gameHeight;
+        this.midPointY = midPointY;
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(true, 136, this.gameHeight);
+        camera.setToOrtho(true, 136, gameHeight);
 
         batcher = new SpriteBatch();
         batcher.setProjectionMatrix(camera.combined);
+
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(camera.combined);
 
-        initAssets();
         initGameObjects();
+        initAssets();
     }
-    public void setShapeRenderer(float runTime){
+    public void render(float runTime, float delta){
 
         Bird bird = gameWorld.getBird();
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.begin(ShapeType.Filled);
 
         //Draw Background color
         shapeRenderer.setColor(55 / 255.0f, 80 / 255.0f, 100 / 255.0f, 1);
@@ -85,7 +82,7 @@ public class GameRenderer {
 
         batcher.begin();
         batcher.disableBlending();
-        batcher.draw(AssetLoader.bg, 0, midPointY + 23, 136, 43);
+        batcher.draw(bg, 0, midPointY + 23, 136, 43);
 
         batcher.enableBlending();
 
